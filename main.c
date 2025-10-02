@@ -113,7 +113,6 @@ struct node* del(struct node* list, int intData) {
         return NULL;
         
     }
-
     if(list->data == intData) {
         
         struct node* rest = list->next;
@@ -130,12 +129,26 @@ struct node* del(struct node* list, int intData) {
 void copy(struct node *q, struct node **s) {
     
     if(q == NULL) {
+        
         *s = NULL;
         return;
+        
     }
 
     *s = (struct node*)malloc(sizeof(struct node));
     (*s)->data = q->data;
     copy(q->next, &((*s)->next));
+    
+}
+
+void freeList(struct node* list) {
+
+    if(list == NULL) {
+        
+        return;
+        
+    }
+    freeList(list->next);
+    free(list);
     
 }
