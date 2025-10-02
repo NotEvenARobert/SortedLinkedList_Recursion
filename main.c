@@ -105,3 +105,24 @@ struct node* insert(struct node* list, int intData) {
     return list;
   
 }
+
+struct node* del(struct node* list, int intData) {
+
+    if(list == NULL) {
+        
+        return NULL;
+        
+    }
+
+    if(list->data == intData) {
+        
+        struct node* rest = list->next;
+        free(list);
+        return rest;
+        
+    }
+
+    list->next = del(list->next, intData);
+    return list;
+    
+}
