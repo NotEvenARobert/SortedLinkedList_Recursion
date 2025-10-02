@@ -94,10 +94,10 @@ struct node* insert(struct node* list, int intData) {
 
     if(list == NULL || intData < list->data) {
 
-        struct node* newPtr = (struct node*)malloc(sizeof(struct node));
-        newPtr->data = intData;
-        newPtr->next = list;
-        return newPtr;
+        struct node* pNew = (struct node*)malloc(sizeof(struct node));
+        pNew->data = intData;
+        pNew->next = list;
+        return pNew;
       
     }
 
@@ -124,5 +124,18 @@ struct node* del(struct node* list, int intData) {
 
     list->next = del(list->next, intData);
     return list;
+    
+}
+
+void copy(struct node *q, struct node **s) {
+    
+    if(q == NULL) {
+        *s = NULL;
+        return;
+    }
+
+    *s = (struct node*)malloc(sizeof(struct node));
+    (*s)->data = q->data;
+    copy(q->next, &((*s)->next));
     
 }
